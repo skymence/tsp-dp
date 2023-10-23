@@ -15,7 +15,8 @@ if __name__ == "__main__":
      
      solver = TSPSolver(graph)
      cost, _, path = solver.solve()
+     
      print("Minimum-cost tour:", path)
      print("Cost:", cost)
-     
+
      graph.plot_overlay_TSP(solver)

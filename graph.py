@@ -74,6 +74,8 @@ class UndirectedGraph:
         return distance_matrix
     
     def plot_graph(self, filename = "images/graph_plot.png"):
+        plt.title("Graph", fontsize = 20)
+
         pos = nx.circular_layout(self._graph)
         nx.draw(self._graph, pos = pos, with_labels = True, font_weight = "bold")
 
@@ -103,6 +105,7 @@ class UndirectedGraph:
         cycle.plot(filename)
 
     def plot_overlay_TSP(self, solver, filename = "images/overlay_tsp_cycle.png"):
+        plt.title("Graph and TSP Solution", fontsize = 20)
         labels = nx.get_edge_attributes(self._graph, "weight")
 
         _, _index_path, node_path = solver.solve()
