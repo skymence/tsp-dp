@@ -76,7 +76,7 @@ class UndirectedGraph:
     def plot_graph(self, filename = "images/graph_plot.png"):
         plt.title("Graph", fontsize = 20)
 
-        pos = nx.circular_layout(self._graph)
+        pos = nx.spring_layout(self._graph)
         nx.draw(self._graph, pos = pos, with_labels = True, font_weight = "bold")
 
         labels = nx.get_edge_attributes(self._graph, "weight")
@@ -115,7 +115,7 @@ class UndirectedGraph:
         for i in range(n - 1):
             edge_colors.add((node_path[i], node_path[i + 1]))
 
-        pos = nx.circular_layout(self._graph)
+        pos = nx.spring_layout(self._graph)
         colors = ["r" if (i, j) in edge_colors or (j, i) in edge_colors else "b" for i, j in self.get_edges()]
 
         nx.draw(self._graph, pos = pos, edge_color = colors, with_labels = True, font_weight = "bold")
