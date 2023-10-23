@@ -102,7 +102,7 @@ class UndirectedGraph:
         for i in range(n - 1):
             cycle.add_edge(node_path[i], node_path[i + 1], weight = distances[index_path[i]][index_path[i + 1]])
         
-        cycle.plot(filename)
+        cycle.plot_graph(filename)
 
     def plot_overlay_TSP(self, solver, filename = "images/overlay_tsp_cycle.png"):
         plt.title("Graph and TSP Solution", fontsize = 20)

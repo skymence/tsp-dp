@@ -1,4 +1,4 @@
-from tsp_solver import TSPSolver
+from tsp_solver import TSPSolver, BruteForceTSPSolver
 from graph import UndirectedGraph
 
 if __name__ == "__main__":

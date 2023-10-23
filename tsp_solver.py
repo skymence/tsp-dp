@@ -1,5 +1,6 @@
 import math 
 import functools
+import itertools
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -37,3 +38,29 @@ class TSPSolver:
                     path = subpath + [j]
 
         return res, path
+    
+class BruteForceTSPSolver(TSPSolver):
+        
+    def __init__(self, graph):
+        self._graph = graph
+        self._distances = graph.get_edge_distance_matrix()
+        self._N = len(graph)
+    
+    def __cost(self, ordering):
+        cost = sum(self._distances[ordering[i]][ordering[(i + 1)]] for i in range(self._N - 1))
+        cost += self._distances[ordering[-1]][ordering[0]]
+
+        return cost
+
+    def solve(self, start = 0):
+        orderings = itertools.permutations(range(self._N))
+
+        res = INF 
+        index_path = []
+        for ordering in orderings:
+            if self.__cost(ordering) < res:
+                res = self.__cost(ordering)
+                index_path = list(ordering) + [ordering[0]]
+
+        node_path = [self._graph.index_to_node(i) for i in index_path]
+        return res, index_path, node_path
